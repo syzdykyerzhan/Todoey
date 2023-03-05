@@ -118,7 +118,7 @@ extension ItemViewController: UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: DataTableViewCell.IDENTIFIER) as! DataTableViewCell
-        cell.configure(with: models[indexPath.row].name!)
+        cell.configure(with: models[indexPath.row].name!,tintColor: .white)
         if indexPath.row == 0 {addValue = 0.0}
         addValue += 0.1
         cell.backgroundColor = getColor()

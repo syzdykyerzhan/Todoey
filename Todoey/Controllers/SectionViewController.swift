@@ -90,18 +90,18 @@ private extension SectionViewController{
         }
     }
     
-    func getColor(with model: TodoeySection) -> UIColor{
+    func getColor(with model: TodoeySection) -> (UIColor,UIColor){
         switch model.color{
-        case "red": return UIColor.red
-        case "blue": return UIColor.blue
-        case "green": return UIColor.green
-        case "pink": return UIColor.systemPink
-        case "yellow": return UIColor.yellow
-        case "gray": return UIColor.gray
-        case "cyan": return UIColor.cyan
-        case "brown": return UIColor.brown
-        case "orange": return UIColor.orange
-        default: return UIColor.white
+        case "red": return (UIColor.red , UIColor.white)
+        case "blue": return (UIColor.blue,UIColor.white)
+        case "green": return (UIColor.green,UIColor.white)
+        case "pink": return (UIColor.systemPink,UIColor.white)
+        case "yellow": return (UIColor.yellow,UIColor.black)
+        case "gray": return (UIColor.gray,UIColor.black)
+        case "cyan": return (UIColor.cyan,UIColor.black)
+        case "brown": return (UIColor.brown,UIColor.white)
+        case "orange": return (UIColor.orange,UIColor.black)
+        default: return (UIColor.white,UIColor.black)
         }
     }
     
@@ -115,9 +115,9 @@ extension SectionViewController: UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: DataTableViewCell.IDENTIFIER) as! DataTableViewCell
-        cell.configure(with: models[indexPath.row].name!)
-        
-        cell.backgroundColor = getColor(with: models[indexPath.row])
+        let myVar = getColor(with: models[indexPath.row])
+        cell.configure(with: models[indexPath.row].name!,tintColor: myVar.1)
+        cell.backgroundColor = myVar.0
         cell.selectionStyle = .none
         
         return cell

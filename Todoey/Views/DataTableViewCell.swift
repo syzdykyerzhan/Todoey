@@ -29,8 +29,9 @@ final class DataTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(with text: String){
+    func configure(with text: String, tintColor: UIColor){
         nameLabel.text = text
+        nameLabel.textColor = tintColor
     }
 
 }
