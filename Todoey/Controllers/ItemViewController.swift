@@ -14,6 +14,8 @@ final class ItemViewController: UIViewController {
     private var models = [TodoeyItem]()
     public var selectedSection : TodoeySection?
     var addValue = 0.0
+    private lazy var imagePicker = UIImagePickerController()
+    private var updatingItem : TodoeyItem?
     
     private lazy var searchBar : UISearchBar = {
         let searchBar = UISearchBar()
@@ -38,6 +40,8 @@ final class ItemViewController: UIViewController {
         ItemManager.shared.delegate = self
         ItemManager.shared.fetchItems(section: selectedSection!)
         
+        imagePicker.delegate = self
+        
         itemsTableView.dataSource = self
         itemsTableView.delegate = self
         searchBar.delegate = self
@@ -45,6 +49,19 @@ final class ItemViewController: UIViewController {
         setNavigationButton()
         setupViews()
         setupConstraints()
+    }
+}
+
+//MARK: Image Picker Delegate
+
+extension ItemViewController: UIImagePickerControllerDelegate & UINavigationControllerDelegate{
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+            picker.dismiss(animated: true, completion: nil)
+        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            if updatingItem != nil, selectedSection != nil{
+                ItemManager.shared.updateItem(item: self.updatingItem!, with: (image.jpegData(compressionQuality: 1.0))!, section: self.selectedSection! )
+            }
+        }
     }
 }
 
@@ -76,9 +93,8 @@ private extension ItemViewController{
         navigationController?.navigationBar.prefersLargeTitles = true
         
         let addBarButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
-        let colorBarButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(addTapped))
         
-        navigationItem.rightBarButtonItems = [addBarButton,colorBarButton]
+        navigationItem.rightBarButtonItem = addBarButton
     }
     
     @objc private func addTapped(){
@@ -118,7 +134,12 @@ extension ItemViewController: UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: DataTableViewCell.IDENTIFIER) as! DataTableViewCell
-        cell.configure(with: models[indexPath.row].name!,tintColor: .white)
+        let model = models[indexPath.row]
+        
+        if let name = model.name{
+            cell.configure(with: name,tintColor: .white, data: model.storedImage)
+        }
+        
         if indexPath.row == 0 {addValue = 0.0}
         addValue += 0.1
         cell.backgroundColor = getColor()
@@ -135,6 +156,7 @@ extension ItemViewController: UITableViewDelegate{
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (action, view, handler) in
             ItemManager.shared.deleteItem(item: self.models[indexPath.row],section: self.selectedSection!)
         }
+        deleteAction.backgroundColor = .red
         
         let editAction = UIContextualAction(style: .normal, title: "Edit") { (action, view, handler) in
             let alert  = UIAlertController(title: "Edit Item", message: "Change name of item", preferredStyle: .alert)
@@ -149,8 +171,17 @@ extension ItemViewController: UITableViewDelegate{
             self.present(alert, animated: true)
         }
         
-        deleteAction.backgroundColor = .red
-        let configuration = UISwipeActionsConfiguration(actions: [deleteAction,editAction])
+        let updateAction = UIContextualAction(style: .destructive, title: "Set image") { (action, view, handler) in
+            
+            self.imagePicker.allowsEditing = false
+            self.imagePicker.sourceType = .photoLibrary
+            self.updatingItem = self.models[indexPath.row]
+            
+            self.present(self.imagePicker,animated: true,completion: nil)
+        }
+        updateAction.backgroundColor = .blue
+        
+        let configuration = UISwipeActionsConfiguration(actions: [deleteAction,editAction,updateAction])
         return configuration
     }
 }

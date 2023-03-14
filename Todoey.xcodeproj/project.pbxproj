@@ -11,10 +11,10 @@
 		6318E06729AFB4F20028F4F8 /* DataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6318E06629AFB4F20028F4F8 /* DataTableViewCell.swift */; };
 		6318E06A29AFC2B60028F4F8 /* SectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6318E06929AFC2B60028F4F8 /* SectionViewController.swift */; };
 		6318E06E29AFD0C50028F4F8 /* ItemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6318E06D29AFD0C50028F4F8 /* ItemManager.swift */; };
-		6375155329B513B0009C6B2A /* TodoeyItem+CoreDataProperties copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6375154F29B513B0009C6B2A /* TodoeyItem+CoreDataProperties copy.swift */; };
-		6375155429B513B0009C6B2A /* TodoeySection+CoreDataClass copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6375155029B513B0009C6B2A /* TodoeySection+CoreDataClass copy.swift */; };
-		6375155529B513B0009C6B2A /* TodoeySection+CoreDataProperties copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6375155129B513B0009C6B2A /* TodoeySection+CoreDataProperties copy.swift */; };
-		6375155629B513B0009C6B2A /* TodoeyItem+CoreDataClass copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6375155229B513B0009C6B2A /* TodoeyItem+CoreDataClass copy.swift */; };
+		636EBD3F29C0552200621FF8 /* TodoeySection+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636EBD3D29C0552200621FF8 /* TodoeySection+CoreDataProperties.swift */; };
+		636EBD4029C0552200621FF8 /* TodoeyItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636EBD3B29C0552200621FF8 /* TodoeyItem+CoreDataProperties.swift */; };
+		636EBD4129C0552200621FF8 /* TodoeyItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636EBD3E29C0552200621FF8 /* TodoeyItem+CoreDataClass.swift */; };
+		636EBD4229C0552200621FF8 /* TodoeySection+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636EBD3C29C0552200621FF8 /* TodoeySection+CoreDataClass.swift */; };
 		6375155829B5345A009C6B2A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6375155729B5345A009C6B2A /* Constants.swift */; };
 		6378B0DD29B08D1E0052BBBC /* SectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6378B0DC29B08D1E0052BBBC /* SectionManager.swift */; };
 		63E9E91129ACE83E000E4CDF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E9E91029ACE83E000E4CDF /* AppDelegate.swift */; };
@@ -30,10 +30,10 @@
 		6318E06629AFB4F20028F4F8 /* DataTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTableViewCell.swift; sourceTree = "<group>"; };
 		6318E06929AFC2B60028F4F8 /* SectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionViewController.swift; sourceTree = "<group>"; };
 		6318E06D29AFD0C50028F4F8 /* ItemManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemManager.swift; sourceTree = "<group>"; };
-		6375154F29B513B0009C6B2A /* TodoeyItem+CoreDataProperties copy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TodoeyItem+CoreDataProperties copy.swift"; sourceTree = "<group>"; };
-		6375155029B513B0009C6B2A /* TodoeySection+CoreDataClass copy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TodoeySection+CoreDataClass copy.swift"; sourceTree = "<group>"; };
-		6375155129B513B0009C6B2A /* TodoeySection+CoreDataProperties copy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TodoeySection+CoreDataProperties copy.swift"; sourceTree = "<group>"; };
-		6375155229B513B0009C6B2A /* TodoeyItem+CoreDataClass copy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TodoeyItem+CoreDataClass copy.swift"; sourceTree = "<group>"; };
+		636EBD3B29C0552200621FF8 /* TodoeyItem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "TodoeyItem+CoreDataProperties.swift"; path = "/Users/yerzhan/Desktop/HOME WORKS/Todoey/TodoeyItem+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
+		636EBD3C29C0552200621FF8 /* TodoeySection+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "TodoeySection+CoreDataClass.swift"; path = "/Users/yerzhan/Desktop/HOME WORKS/Todoey/TodoeySection+CoreDataClass.swift"; sourceTree = "<absolute>"; };
+		636EBD3D29C0552200621FF8 /* TodoeySection+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "TodoeySection+CoreDataProperties.swift"; path = "/Users/yerzhan/Desktop/HOME WORKS/Todoey/TodoeySection+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
+		636EBD3E29C0552200621FF8 /* TodoeyItem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "TodoeyItem+CoreDataClass.swift"; path = "/Users/yerzhan/Desktop/HOME WORKS/Todoey/TodoeyItem+CoreDataClass.swift"; sourceTree = "<absolute>"; };
 		6375155729B5345A009C6B2A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		6378B0DC29B08D1E0052BBBC /* SectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionManager.swift; sourceTree = "<group>"; };
 		63E9E90D29ACE83E000E4CDF /* Todoey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Todoey.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -91,10 +91,10 @@
 			children = (
 				6378B0DC29B08D1E0052BBBC /* SectionManager.swift */,
 				6318E06D29AFD0C50028F4F8 /* ItemManager.swift */,
-				6375155229B513B0009C6B2A /* TodoeyItem+CoreDataClass copy.swift */,
-				6375155129B513B0009C6B2A /* TodoeySection+CoreDataProperties copy.swift */,
-				6375155029B513B0009C6B2A /* TodoeySection+CoreDataClass copy.swift */,
-				6375154F29B513B0009C6B2A /* TodoeyItem+CoreDataProperties copy.swift */,
+				636EBD3E29C0552200621FF8 /* TodoeyItem+CoreDataClass.swift */,
+				636EBD3B29C0552200621FF8 /* TodoeyItem+CoreDataProperties.swift */,
+				636EBD3C29C0552200621FF8 /* TodoeySection+CoreDataClass.swift */,
+				636EBD3D29C0552200621FF8 /* TodoeySection+CoreDataProperties.swift */,
 			);
 			name = Models;
 			path = ..;
@@ -258,16 +258,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6375155629B513B0009C6B2A /* TodoeyItem+CoreDataClass copy.swift in Sources */,
 				6318E06A29AFC2B60028F4F8 /* SectionViewController.swift in Sources */,
+				636EBD3F29C0552200621FF8 /* TodoeySection+CoreDataProperties.swift in Sources */,
+				636EBD4029C0552200621FF8 /* TodoeyItem+CoreDataProperties.swift in Sources */,
 				6318E06E29AFD0C50028F4F8 /* ItemManager.swift in Sources */,
+				636EBD4129C0552200621FF8 /* TodoeyItem+CoreDataClass.swift in Sources */,
 				63E9E91529ACE83E000E4CDF /* ItemViewController.swift in Sources */,
 				6378B0DD29B08D1E0052BBBC /* SectionManager.swift in Sources */,
+				636EBD4229C0552200621FF8 /* TodoeySection+CoreDataClass.swift in Sources */,
 				6375155829B5345A009C6B2A /* Constants.swift in Sources */,
 				63E9E91129ACE83E000E4CDF /* AppDelegate.swift in Sources */,
-				6375155329B513B0009C6B2A /* TodoeyItem+CoreDataProperties copy.swift in Sources */,
-				6375155429B513B0009C6B2A /* TodoeySection+CoreDataClass copy.swift in Sources */,
-				6375155529B513B0009C6B2A /* TodoeySection+CoreDataProperties copy.swift in Sources */,
 				63E9E91329ACE83E000E4CDF /* SceneDelegate.swift in Sources */,
 				6318E06729AFB4F20028F4F8 /* DataTableViewCell.swift in Sources */,
 			);

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 enum Colors: String, CaseIterable {
     case white = "white"
     case red = "red"
@@ -17,8 +18,4 @@ enum Colors: String, CaseIterable {
     case cyan = "cyan"
     case brown = "brown"
     case gray = "gray"
-    
-    func getAll() -> [String]{
-        return ["white","red","green","blue","yellow","pink","orange","cyan","brown","gray"]
-    }
 }

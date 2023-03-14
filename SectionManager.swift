@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 protocol SectionManagerDelegate{
     func didUpdate(with list: [TodoeySection])
@@ -59,6 +60,16 @@ struct SectionManager{
     func editSection(section: TodoeySection,with name: String){
         do{
             section.name = name
+            try context.save()
+            fetchSections()
+        }catch{
+            print("Error accured: ", error)
+        }
+    }
+    
+    func updateSection(section: TodoeySection,with photo: Data){
+        do{
+            section.storedImage = photo
             try context.save()
             fetchSections()
         }catch{

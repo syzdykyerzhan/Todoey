@@ -25,7 +25,7 @@ struct ItemManager{
         do{
             let request = TodoeyItem.fetchRequest()
             
-            if text != ""{
+            if text != "" {
                 let firstPredicate = NSPredicate(format: "name CONTAINS %@", text)
                 let secondPredicate = NSPredicate(format: "section == %@", section)
                 
@@ -74,6 +74,16 @@ struct ItemManager{
     func editItem(item: TodoeyItem,with name: String,section: TodoeySection){
         do{
             item.name = name
+            try context.save()
+            fetchItems(section: section)
+        }catch{
+            print("Error accured: ", error)
+        }
+    }
+    
+    func updateItem(item: TodoeyItem,with data: Data,section: TodoeySection){
+        do{
+            item.storedImage = data
             try context.save()
             fetchItems(section: section)
         }catch{

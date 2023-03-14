@@ -4,11 +4,13 @@
         <attribute name="color" optional="YES" attributeType="String"/>
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="storedImage" optional="YES" attributeType="Binary"/>
         <relationship name="section" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TodoeySection" inverseName="items" inverseEntity="TodoeySection"/>
     </entity>
     <entity name="TodoeySection" representedClassName="TodoeySection" syncable="YES">
         <attribute name="color" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="storedImage" optional="YES" attributeType="Binary"/>
         <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TodoeyItem" inverseName="section" inverseEntity="TodoeyItem"/>
     </entity>
 </model>

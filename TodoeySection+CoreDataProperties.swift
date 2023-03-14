@@ -2,7 +2,7 @@
 //  TodoeySection+CoreDataProperties.swift
 //  
 //
-//  Created by Yerzhan Syzdyk on 06.03.2023.
+//  Created by Yerzhan Syzdyk on 14.03.2023.
 //
 //
 
@@ -16,8 +16,9 @@ extension TodoeySection {
         return NSFetchRequest<TodoeySection>(entityName: "TodoeySection")
     }
 
-    @NSManaged public var name: String?
     @NSManaged public var color: String?
+    @NSManaged public var name: String?
+    @NSManaged public var storedImage: Data?
     @NSManaged public var items: NSSet?
 
 }

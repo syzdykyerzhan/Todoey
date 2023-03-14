@@ -8,18 +8,21 @@
 import UIKit
 import DropDown
 
-final class SectionViewController: UIViewController {
+final class SectionViewController: UIViewController, UINavigationControllerDelegate {
     
     private var selectedColor = "white"
+    private var imagePicker = UIImagePickerController()
+    public var updatingSection: TodoeySection?
+    private var models = [TodoeySection]()
     
     private lazy var menu : DropDown = {
         let menu = DropDown()
-        menu.dataSource = ["white","red","green","blue","yellow","pink","orange","cyan","brown","gray"]
+        var data : [String] = []
+        for color in Colors.allCases{data.append(color.rawValue)}
+        menu.dataSource = data
         menu.anchorView = sectionTableView
         return menu
     }()
-    
-    private var models = [TodoeySection]()
     
     private lazy var sectionTableView : UITableView = {
         let myTableView = UITableView()
@@ -33,6 +36,8 @@ final class SectionViewController: UIViewController {
         SectionManager.shared.delegate = self
         SectionManager.shared.fetchSections()
         
+        imagePicker.delegate = self
+        
         view.backgroundColor = .cyan
         setNavigationButton()
         
@@ -41,6 +46,19 @@ final class SectionViewController: UIViewController {
         
         setupViews()
         setupConstraints()
+    }
+}
+
+//MARK: Image Picker Delegate
+
+extension SectionViewController: UIImagePickerControllerDelegate{
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+            picker.dismiss(animated: true, completion: nil)
+        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            if updatingSection != nil{
+                SectionManager.shared.updateSection(section: self.updatingSection!, with: (image.jpegData(compressionQuality: 1.0))!)
+            }
+        }
     }
 }
 
@@ -58,6 +76,7 @@ extension SectionViewController: SectionManagerDelegate{
 
 //MARK: Private extensions
 private extension SectionViewController{
+    
     func setNavigationButton(){
         navigationItem.title = "Todoey"
         navigationController?.navigationBar.tintColor = .label
@@ -92,7 +111,7 @@ private extension SectionViewController{
     
     func getColor(with model: TodoeySection) -> (UIColor,UIColor){
         switch model.color{
-        case "red": return (UIColor.red , UIColor.white)
+        case "red": return (UIColor.red, UIColor.white)
         case "blue": return (UIColor.blue,UIColor.white)
         case "green": return (UIColor.green,UIColor.white)
         case "pink": return (UIColor.systemPink,UIColor.white)
@@ -104,19 +123,22 @@ private extension SectionViewController{
         default: return (UIColor.white,UIColor.black)
         }
     }
-    
 }
 
 //MARK: Table View Data Source
 extension SectionViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        models.count
+        return models.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: DataTableViewCell.IDENTIFIER) as! DataTableViewCell
         let myVar = getColor(with: models[indexPath.row])
-        cell.configure(with: models[indexPath.row].name!,tintColor: myVar.1)
+        
+        if let name = models[indexPath.row].name{
+            cell.configure(with: name,tintColor: myVar.1, data: models[indexPath.row].storedImage)
+        }
+        
         cell.backgroundColor = myVar.0
         cell.selectionStyle = .none
         
@@ -133,6 +155,7 @@ extension SectionViewController: UITableViewDelegate{
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (action, view, handler) in
             SectionManager.shared.deleteSection(section: self.models[indexPath.row])
         }
+        deleteAction.backgroundColor = .red
 
         let editAction = UIContextualAction(style: .normal, title: "Edit") { (action, view, handler) in
             let alert  = UIAlertController(title: "Edit Section", message: "Change name of section", preferredStyle: .alert)
@@ -147,8 +170,17 @@ extension SectionViewController: UITableViewDelegate{
             self.present(alert, animated: true)
         }
 
-        deleteAction.backgroundColor = .red
-        let configuration = UISwipeActionsConfiguration(actions: [deleteAction,editAction])
+        let updateAction = UIContextualAction(style: .destructive, title: "Set Image") { (action, view, handler) in
+            
+            self.imagePicker.allowsEditing = false
+            self.imagePicker.sourceType = .photoLibrary
+            self.updatingSection = self.models[indexPath.row]
+            
+            self.present(self.imagePicker,animated: true,completion: nil)
+        }
+        updateAction.backgroundColor = .blue
+
+        let configuration = UISwipeActionsConfiguration(actions: [deleteAction,editAction,updateAction])
         return configuration
     }
     
